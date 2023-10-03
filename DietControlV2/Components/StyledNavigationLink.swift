@@ -14,6 +14,7 @@ struct StyledNavigationLink<Content: View>: View {
 	var title : String = "Testo Predefinito"
 	var textColor : Color = .text
 	var shadowActive : Bool = false
+	var isDisabled : Bool = false
 	
 	var body: some View {
 		
@@ -30,6 +31,7 @@ struct StyledNavigationLink<Content: View>: View {
 					y: shadowActive ? 4 : 0
 				)
 		}
+		.disabled(isDisabled)
 		
 		
 	}

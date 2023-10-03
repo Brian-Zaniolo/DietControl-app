@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RootPage: View {
-	@State var prova = 0
 	
     var body: some View {
 		NavigationStack{
@@ -32,9 +31,9 @@ struct RootPage: View {
 			}
 			
 			VStack {
-				StyledNavigationLink(destination: RegisterPage(),bgColor: .mainGreenAccent, title: "GET STARTED", textColor: .white, shadowActive: true)
+				StyledNavigationLink(destination: RegisterPage(),bgColor: .mainGreenAccent, title: "GET STARTED", textColor: .white, shadowActive: true, isDisabled: false)
 				
-				StyledNavigationLink(destination: RegisterPage(),title: "I HAVE ALREADY AN ACCOUNT", textColor: .gray)
+				StyledNavigationLink(destination: RegisterPage(),title: "I HAVE ALREADY AN ACCOUNT", textColor: .gray, isDisabled: false)
 			}
 			.offset(x:0,y: 200)
 		}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserDataModel {
+class UserDataModel : ObservableObject{	
 	var name : String
 	var surname : String
 	var birthDate : Date
@@ -19,16 +19,16 @@ struct UserDataModel {
 	var caloriesGoal : Double
 	
 	
-	init(name: String, surname: String, birthDate: Date, email: String, password: String, height: Double, sex: String, weight: Double, caloriesGoal: Double) {
-		self.name = name
-		self.surname = surname
-		self.birthDate = birthDate
-		self.email = email
-		self.password = password
-		self.height = height
-		self.sex = sex
-		self.weight = weight
-		self.caloriesGoal = caloriesGoal
+	init() {
+		self.name = ""
+		self.surname = ""
+		self.birthDate = Date()
+		self.email = ""
+		self.password = ""
+		self.height = 0.0
+		self.sex = ""
+		self.weight = 0.0
+		self.caloriesGoal = 0.0
 	}
 	
 	var isOverLegalAge : Bool {
