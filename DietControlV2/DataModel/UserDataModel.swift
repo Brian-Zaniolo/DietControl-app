@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserDataModel : ObservableObject{	
+struct UserDataModel {
 	var name : String
 	var surname : String
 	var birthDate : Date
@@ -26,7 +26,7 @@ class UserDataModel : ObservableObject{
 		self.email = ""
 		self.password = ""
 		self.height = 0.0
-		self.sex = ""
+		self.sex = "select"
 		self.weight = 0.0
 		self.caloriesGoal = 0.0
 	}
@@ -35,4 +35,7 @@ class UserDataModel : ObservableObject{
 		return Calendar.current.component(.year, from: Date()) - Calendar.current.component(.year, from: birthDate) > 18 ? true : false
 	}
 	
+	var areRequiredEmpty : Bool {
+		return name.isEmpty || surname.isEmpty || email.isEmpty || password.isEmpty || sex == "select"
+	}
 }

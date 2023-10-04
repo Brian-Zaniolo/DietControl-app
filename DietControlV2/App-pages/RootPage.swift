@@ -11,6 +11,7 @@ struct RootPage: View {
 	
     var body: some View {
 		NavigationStack{
+			Spacer()
 			Image(systemName: "globe")
 				.resizable()
 				.aspectRatio(contentMode: .fit)
@@ -29,13 +30,13 @@ struct RootPage: View {
 				
 				Text("Keep your diet under control").bold().foregroundStyle(.gray)
 			}
-			
+			Spacer()
 			VStack {
 				StyledNavigationLink(destination: RegisterPage(),bgColor: .mainGreenAccent, title: "GET STARTED", textColor: .white, shadowActive: true, isDisabled: false)
 				
 				StyledNavigationLink(destination: RegisterPage(),title: "I HAVE ALREADY AN ACCOUNT", textColor: .gray, isDisabled: false)
 			}
-			.offset(x:0,y: 200)
+			
 		}
 		
     }

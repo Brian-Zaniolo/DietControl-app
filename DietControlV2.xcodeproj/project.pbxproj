@@ -19,6 +19,7 @@
 		6B805F9A2AC86D5100336E0A /* DietControlV2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B805F992AC86D5100336E0A /* DietControlV2UITestsLaunchTests.swift */; };
 		6B805FAA2AC86DCD00336E0A /* RootPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B805FA92AC86DCD00336E0A /* RootPage.swift */; };
 		6B805FAC2AC87A0A00336E0A /* ColoredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B805FAB2AC87A0A00336E0A /* ColoredButton.swift */; };
+		6BBADE722ACD97E7003248B4 /* OptionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBADE712ACD97E7003248B4 /* OptionalInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		6B805F992AC86D5100336E0A /* DietControlV2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietControlV2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6B805FA92AC86DCD00336E0A /* RootPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPage.swift; sourceTree = "<group>"; };
 		6B805FAB2AC87A0A00336E0A /* ColoredButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredButton.swift; sourceTree = "<group>"; };
+		6BBADE712ACD97E7003248B4 /* OptionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				6B805FA92AC86DCD00336E0A /* RootPage.swift */,
 				6B756AA12ACAAA8D005852BA /* RegisterPage.swift */,
+				6BBADE712ACD97E7003248B4 /* OptionalInfo.swift */,
 			);
 			path = "App-pages";
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				6B690F802ACC1F4400F4282C /* userDataModel.xcdatamodeld in Sources */,
 				6B756AA22ACAAA8D005852BA /* RegisterPage.swift in Sources */,
 				6B805FAC2AC87A0A00336E0A /* ColoredButton.swift in Sources */,
+				6BBADE722ACD97E7003248B4 /* OptionalInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
