@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct AppLogo: View {
+	
+	@Environment(\.colorScheme) var colorScheme
+	
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		
+		if colorScheme == .light{
+			Image("AppLogo")
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.colorInvert()
+				.frame(maxHeight: 300)
+				.foregroundStyle(.gray)
+		}else{
+			Image("AppLogo")
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(maxHeight: 300)
+				.foregroundStyle(.gray)
+		}
+		
     }
 }
 

@@ -12,12 +12,7 @@ struct RootPage: View {
     var body: some View {
 		NavigationStack{
 			Spacer()
-			Image(systemName: "globe")
-				.resizable()
-				.aspectRatio(contentMode: .fit)
-				.frame(maxHeight: 100)
-				.foregroundStyle(.gray)
-			
+			AppLogo()
 			VStack (spacing:20){
 				HStack{
 					Text("Diet")
