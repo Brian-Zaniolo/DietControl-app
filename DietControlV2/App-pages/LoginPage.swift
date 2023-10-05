@@ -23,7 +23,7 @@ struct LoginPage: View {
 		.padding()
 		.overlay(RoundedRectangle(cornerRadius: 10).stroke(.uiGray))
 		Spacer().frame(maxHeight: 30)
-		StyledNavigationLink(destination: RegisterPage(),bgColor: .mainGreenAccent, title: "LOG IN", textColor: .white, shadowActive: true, isDisabled: userData.areEmailPasswordInValid)
+		StyledNavigationLink(destination: HomePage(),bgColor: .mainGreenAccent, title: "LOG IN", textColor: .white, shadowActive: true, isDisabled: userData.areEmailPasswordInValid)
     }
 }
 
