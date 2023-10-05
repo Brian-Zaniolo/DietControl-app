@@ -33,21 +33,18 @@ struct TextFieldWithError: View {
 			SecureField(self.placeholder ?? "Default placeholder", text: self.$text)
 				.onChange(of: self.text){
 					hasError = self.text.isEmpty
-					print(self.text, hasError)
 				}
 				.underline(color: hasError ? .red : .clear)
 		}else if emailCheck{
 			TextField(self.placeholder ?? "Default placeholder", text: self.$text)
 				.onChange(of: self.text){
 					hasError = self.text.isEmpty || !isAnEmail
-					print(self.text, hasError, isAnEmail)
 				}
 				.underline(color: hasError ? .red : .clear)
 		}else{
 			TextField(self.placeholder ?? "Default placeholder", text: self.$text)
 				.onChange(of: self.text){
 					hasError = self.text.isEmpty
-					print(self.text, hasError)
 				}
 				.underline(color: hasError ? .red : .clear)
 		}

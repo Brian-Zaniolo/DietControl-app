@@ -44,4 +44,8 @@ struct UserDataModel {
 		let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
 		return predicate.evaluate(with: self.email)
 	}
+	
+	var areEmailPasswordInValid : Bool {
+		return self.email.isEmpty || self.password.isEmpty || !self.isAnEmail
+	}
 }

@@ -49,7 +49,7 @@ struct RegisterPage: View {
 			.padding()
 			.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.uiGray))
 			Spacer()
-			StyledNavigationLink(destination: OptionalInfo(), bgColor: .mainGreenAccent, title: "SIGN UP", textColor: .white, shadowActive: true, isDisabled: !userData.isOverLegalAge || userData.areRequiredEmpty || !checkPassword || !userData.isAnEmail)
+			StyledNavigationLink(destination: RootPage(), bgColor: .mainGreenAccent, title: "SIGN UP", textColor: .white, shadowActive: true, isDisabled: !userData.isOverLegalAge || userData.areRequiredEmpty || !checkPassword || !userData.isAnEmail)
 			
 		}
 	}
