@@ -32,10 +32,16 @@ struct UserDataModel {
 	}
 	
 	var isOverLegalAge : Bool {
-		return Calendar.current.component(.year, from: Date()) - Calendar.current.component(.year, from: birthDate) > 18 ? true : false
+		return Calendar.current.component(.year, from: Date()) - Calendar.current.component(.year, from: self.birthDate) > 18 ? true : false
 	}
 	
 	var areRequiredEmpty : Bool {
-		return name.isEmpty || surname.isEmpty || email.isEmpty || password.isEmpty || sex == "select"
+		return self.name.isEmpty || self.surname.isEmpty || self.email.isEmpty || self.password.isEmpty || self.sex == "select"
+	}
+	
+	var isAnEmail : Bool {
+		let regex = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"#
+		let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+		return predicate.evaluate(with: self.email)
 	}
 }
