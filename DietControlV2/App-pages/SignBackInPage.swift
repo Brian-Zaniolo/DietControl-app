@@ -13,7 +13,7 @@ struct SignBackInPage: View {
 			
 			AppLogo().offset(y:40)
 			
-			Text("Sign Back In").font(.largeTitle).bold()
+			Text("SIGN BACK IN").font(.largeTitle).bold().foregroundStyle(.mainGreenAccent)
 			
 			Text("Choose an account saved in this device:").font(.headline).foregroundStyle(.gray)
 			
@@ -62,7 +62,7 @@ struct SignBackInPage: View {
 				Spacer().frame(maxHeight: 25)
 			}
 			.frame(maxWidth: 330)
-			.overlay(RoundedRectangle(cornerRadius: 10).stroke().foregroundStyle(.mainGreenAccent))
+			.overlay(RoundedRectangle(cornerRadius: 10).stroke().foregroundStyle(.uiGray))
 			
 			Spacer().frame(maxHeight: 50)
 			

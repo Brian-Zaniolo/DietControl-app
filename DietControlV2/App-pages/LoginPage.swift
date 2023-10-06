@@ -12,8 +12,8 @@ struct LoginPage: View {
 	@State var userData : UserDataModel = UserDataModel()
 	
     var body: some View {
-		Text("Enter info to log in").font(.title).bold()
-		VStack{
+		Text("ENTER INFO. TO LOG IN").font(.title).bold()
+		VStack(spacing:20){
 			TextFieldWithError(text: $userData.email, placeholder: "Enter email", isEmailField: true)
 			Divider()
 			TextFieldWithError(text: $userData.password, placeholder: "Enter password", isSecure: true)
