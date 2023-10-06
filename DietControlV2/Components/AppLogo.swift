@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AppLogo: View {
 	
-	@Environment(\.colorScheme) var colorScheme
+	@Environment(\.colorScheme) private var colorScheme
+	var frameHeight : Double = 300
 	
     var body: some View {
 		
@@ -18,13 +19,13 @@ struct AppLogo: View {
 				.resizable()
 				.aspectRatio(contentMode: .fit)
 				.colorInvert()
-				.frame(maxHeight: 300)
+				.frame(maxHeight: frameHeight)
 				.foregroundStyle(.gray)
 		}else{
 			Image("AppLogo")
 				.resizable()
 				.aspectRatio(contentMode: .fit)
-				.frame(maxHeight: 300)
+				.frame(maxHeight: frameHeight)
 				.foregroundStyle(.gray)
 		}
 		
@@ -32,5 +33,5 @@ struct AppLogo: View {
 }
 
 #Preview {
-    AppLogo()
+	AppLogo()
 }
