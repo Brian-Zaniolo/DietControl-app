@@ -7,17 +7,18 @@
 
 import Foundation
 
-struct UserDataModel {
-	var name : String
-	var surname : String
-	var birthDate : Date
-	var email : String
-	var password : String
-	var height : Double
-	var sex : String
-	var weight : Double
-	var caloriesGoal : Double
-	
+
+class UserDataModel: ObservableObject{
+	static let shared = UserDataModel()
+	@Published var name : String
+	@Published var surname : String
+	@Published var birthDate : Date
+	@Published var email : String
+	@Published var password : String
+	@Published var height : Double
+	@Published var sex : String
+	@Published var weight : Double
+	@Published var caloriesGoal : Double
 	
 	init() {
 		self.name = ""
@@ -47,5 +48,9 @@ struct UserDataModel {
 	
 	var areEmailPasswordInValid : Bool {
 		return self.email.isEmpty || self.password.isEmpty || !self.isAnEmail
+	}
+	
+	var isConfigComplete : Bool {
+		return !areRequiredEmpty && isOverLegalAge
 	}
 }

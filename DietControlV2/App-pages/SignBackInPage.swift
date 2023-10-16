@@ -26,7 +26,7 @@ struct SignBackInPage: View {
 					AppLogo(frameHeight: 80)
 					
 					VStack {
-						StyledNavigationLink(destination: HomePage(), bgColor: .clear, title: "Account Loggato", textColor: .black, shadowActive: false, isDisabled: false)
+						StyledNavigationLink(destination: HomePage(), bgColor: .clear, title: "Account Loggato", shadowActive: false, isDisabled: false)
 							.foregroundStyle(.black)
 						
 						Text("logged@logged.com").font(.caption).tint(.gray)
@@ -49,7 +49,7 @@ struct SignBackInPage: View {
 						.aspectRatio(contentMode: .fit)
 						.offset(x:7)
 					
-					StyledNavigationLink(destination: HomePage(), bgColor: .clear, title: "Add Account", textColor: .black, shadowActive: false, isDisabled: false)
+					StyledNavigationLink(destination: HomePage(), bgColor: .clear, title: "Add Account", shadowActive: false, isDisabled: false)
 						.foregroundStyle(.black)
 					
 					Image(systemName: "arrow.right").foregroundStyle(.gray)

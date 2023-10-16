@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct DietControlV2App: App {
+	
+	@State private var modelData = UserDataModel()
+	
     var body: some Scene {
         WindowGroup {
-            RootPage()
-				//.environmentObject(UserDataModel())
+			RootPage()
         }
+		
     }
 }

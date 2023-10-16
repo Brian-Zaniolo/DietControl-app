@@ -8,27 +8,39 @@
 import SwiftUI
 
 struct HomePage: View {
-    var body: some View {
-		TabView{
-			HomePageContent()
-				.tabItem { Label("Home", systemImage: "house.fill")}
-			
+	
+	@ObservedObject var userData : UserDataModel = .shared
+	
+	var body: some View {
+		NavigationStack{
+			TabView{
+				HomePageContent()
+					.tabItem { Label("Home", systemImage: "house.fill")}
+			}
+			.navigationBarBackButtonHidden()
+			.toolbar{
+				ToolbarItem(placement: .topBarLeading){
+					Text("Welcome \(userData.name)").font(.largeTitle)
+				}
+			}
 		}
-    }
+	}
 }
+
 
 struct HomePageContent: View {
 	
+	@ObservedObject var userData : UserDataModel = .shared
 	private var today : Date = Date()
 	@State var progress : Double = 200
 	
 	var body: some View{
-		VStack{
+		ScrollView{
 			HStack{
 				VStack(alignment: .leading){
 					Text(today.formatted(date: .complete, time: .omitted))
 						.font(.caption)
-					Text("Here is your summary")
+					Text("Here is your summary \(userData.name)")
 				}
 				Spacer()
 				Image("AppLogo")
@@ -56,12 +68,12 @@ struct HomePageContent: View {
 				Spacer()
 				ZStack{
 					Circle()
-						.trim(from: 0.0, to: 0.3)
+						.trim(from: 0.0, to: 0.01)
 						.stroke(style: StrokeStyle(lineWidth: 30, lineCap: .round))
 						.foregroundColor(.mainGreenAccent)
 						.rotationEffect(.degrees(-90))
 						.frame(width: 110, height: 110)
-						
+					
 					Circle()
 						.stroke(.mainGreenAccent.tertiary, lineWidth: 30)
 						.frame(width: 110,height: 110)
@@ -95,7 +107,7 @@ struct HomePageContent: View {
 						.resizable()
 						.background(.green)
 						.clipShape(RoundedRectangle(cornerRadius: 10))
-						
+					
 					Text("Piatto di prova")
 						.padding()
 						.frame(width: 320,alignment:.leading)
@@ -108,9 +120,10 @@ struct HomePageContent: View {
 			}
 		}
 		.frame(maxWidth: 340)
+		.scrollIndicators(.never)
 	}
 }
 
 #Preview {
-    HomePage()
+	HomePage()
 }

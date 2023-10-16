@@ -33,7 +33,6 @@ struct StyledNavigationLink<Content: View>: View {
 		}
 		.disabled(isDisabled)
 		
-		
 	}
 }
 

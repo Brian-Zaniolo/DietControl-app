@@ -9,15 +9,21 @@ import SwiftUI
 
 struct RegisterPage: View {
 	
-	@State var userData : UserDataModel = UserDataModel()
+	// questo è come si recupera il contesto, in questo modo è pronto per poter essere utilizzato
+	@ObservedObject var userData : UserDataModel = .shared
+	
 	@State var confirmUserPassword : String = ""
 	@State var isEmpty : Bool = false
 	
-	var checkPassword : Bool {
+		
+	
+	var checkPassword : Bool { // verifichiamo che il contenuto dei due campi sia uguale e che questi non siano vuoti
 		return (userData.password == confirmUserPassword) && !confirmUserPassword.isEmpty && !userData.password.isEmpty
 	}
 
 	var body: some View {
+		
+
 		VStack{
 			Spacer()
 			Text("Enter your data").font(.largeTitle).multilineTextAlignment(.leading).bold()
@@ -50,6 +56,10 @@ struct RegisterPage: View {
 			.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.uiGray))
 			Spacer()
 			StyledNavigationLink(destination: HomePage(), bgColor: .mainGreenAccent, title: "SIGN UP", textColor: .white, shadowActive: true, isDisabled: !userData.isOverLegalAge || userData.areRequiredEmpty || !checkPassword || !userData.isAnEmail)
+				.simultaneousGesture(TapGesture().onEnded{
+					UserDefaults.standard.set(false, forKey: "FirstTimeOpen")
+					print(UserDefaults.standard.bool(forKey: "FirstTimeOpen"))
+				})
 			
 		}
 	}
