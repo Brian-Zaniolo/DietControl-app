@@ -18,11 +18,12 @@ struct StyledProgressBar: View {
 	
 	var body: some View {
 		VStack(alignment:.trailing){
-			ProgressView(value: progress, label: {
+			ProgressView(value: progress, total: maxValue,label: {
 				Text(self.text)
 					.foregroundStyle(textColor)
 			})
-			.foregroundStyle(progressColor)
+			.tint(progressColor)
+			.animation(.linear(duration: 0.5), value: progress)
 			
 			Text("\(self.progress.description)/\(self.maxValue.description) \(self.measureUnit)")
 				.font(.caption)
@@ -31,5 +32,5 @@ struct StyledProgressBar: View {
 }
 
 #Preview {
-	StyledProgressBar(maxValue: 10, measureUnit: "g", text: "Ciao")
+	StyledProgressBar(maxValue: 1, measureUnit: "g", text: "Ciao")
 }

@@ -28,8 +28,6 @@ struct FirstTimePage: View {
 			Spacer()
 			VStack {
 				StyledNavigationLink(destination: RegisterPage(),bgColor: .mainGreenAccent, title: "GET STARTED", textColor: .white, shadowActive: true, isDisabled: false)
-				
-				StyledNavigationLink(destination: LoginPage(),title: "I HAVE ALREADY AN ACCOUNT", textColor: .gray, isDisabled: false)
 			}
 		}
 		

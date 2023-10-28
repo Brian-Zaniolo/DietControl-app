@@ -6,124 +6,130 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomePage: View {
+	@EnvironmentObject private var user : User
 	
-	@ObservedObject var userData : UserDataModel = .shared
+	@State private var showPopUpNextMeal : Bool = false
+	@State private var tabViewSelection : Int = 0
 	
 	var body: some View {
 		NavigationStack{
-			TabView{
-				HomePageContent()
-					.tabItem { Label("Home", systemImage: "house.fill")}
-			}
-			.navigationBarBackButtonHidden()
-			.toolbar{
-				ToolbarItem(placement: .topBarLeading){
-					Text("Welcome \(userData.name)").font(.largeTitle)
-				}
-			}
-		}
-	}
-}
-
-
-struct HomePageContent: View {
-	
-	@ObservedObject var userData : UserDataModel = .shared
-	private var today : Date = Date()
-	@State var progress : Double = 200
-	
-	var body: some View{
-		ScrollView{
-			HStack{
-				VStack(alignment: .leading){
-					Text(today.formatted(date: .complete, time: .omitted))
-						.font(.caption)
-					Text("Here is your summary \(userData.name)")
-				}
-				Spacer()
-				Image("AppLogo")
-					.resizable()
-					.scaledToFit()
-					.frame(width: 50, height: 50)
-					.background(.mainGreenAccent.secondary)
-					.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-			}
-			.padding()
-			.background(.uiGray)
-			.clipShape(RoundedRectangle(cornerRadius: 10))
-			
-			HStack{
-				VStack(alignment: .leading){
-					Text("Calories Intake")
-					Text("xx CAL")
-						.font(.title2)
-						.foregroundStyle(.mainGreenAccent)
-					Text("Daily needs")
-					Text("xx").foregroundStyle(.gray)
-					Text("Meals made")
-					Text("x/x").foregroundStyle(.gray)
-				}
-				Spacer()
-				ZStack{
-					Circle()
-						.trim(from: 0.0, to: 0.01)
-						.stroke(style: StrokeStyle(lineWidth: 30, lineCap: .round))
-						.foregroundColor(.mainGreenAccent)
-						.rotationEffect(.degrees(-90))
-						.frame(width: 110, height: 110)
+			TabView(selection : $tabViewSelection){
+				
+				// HomePage
+				ScrollView{
+					UserTopPageCard()
+					HStack{
+						VStack(alignment: .leading){
+							Text("Calories Intake")
+							Text("\(Int(self.user.earnedCalories)) CAL")
+								.font(.title2)
+								.foregroundStyle(.mainGreenAccent)
+							Text("Daily needs")
+							Text("\(Int(self.user.caloriesGoal))").foregroundStyle(.gray)
+							Text("Meals made")
+							Text("x/x").foregroundStyle(.gray)
+						}
+						Spacer()
+						ZStack{
+							Circle()
+								.trim(from: 0, to: CGFloat(self.user.earnedCalories / self.user.caloriesGoal))
+								.stroke(style: StrokeStyle(lineWidth: 30, lineCap: .round, lineJoin: .round))
+								.foregroundColor(.mainGreenAccent)
+								.rotationEffect(.degrees(-90))
+								.frame(width: 110, height: 110)
+								.animation(.linear(duration: 0.4), value: CGFloat(self.user.earnedCalories / self.user.caloriesGoal))
+							Circle()
+								.stroke(.mainGreenAccent.tertiary, lineWidth: 30)
+								.frame(width: 110,height: 110)
+						}
+						Spacer()
+					}
+					.padding()
+					.background(.uiGray)
+					.clipShape(RoundedRectangle(cornerRadius: 10))
 					
-					Circle()
-						.stroke(.mainGreenAccent.tertiary, lineWidth: 30)
-						.frame(width: 110,height: 110)
-				}
-				Spacer()
-			}
-			.padding()
-			.background(.uiGray)
-			.clipShape(RoundedRectangle(cornerRadius: 10))
-			//ProgressView(value: 200, total: 2000).progressViewStyle(CircularProgressViewStyle())
-			
-			VStack(alignment: .leading, spacing: 10){
-				Text("Nutritional Values:")
-					.font(.title2)
-					.foregroundStyle(.black.secondary)
-				VStack{
-					StyledProgressBar(measureUnit: "g", text: "Carbs", textColor: .gray)
-					StyledProgressBar(measureUnit: "g",text: "Protein", textColor: .gray)
-					StyledProgressBar(measureUnit: "g",text: "Fat", textColor: .gray)
-					StyledProgressBar(measureUnit: "l",text: "Water", textColor: .gray)
-				}
-			}
-			
-			VStack(alignment: .leading, spacing: 10){
-				Text("Nutritional Values:")
-					.font(.title2)
-					.foregroundStyle(.black.secondary)
-				ZStack(alignment:.bottom){
-					
-					Image("AppLogo")
-						.resizable()
-						.background(.green)
-						.clipShape(RoundedRectangle(cornerRadius: 10))
-					
-					Text("Piatto di prova")
+					VStack(alignment: .leading, spacing: 10){
+						HStack{
+							Text("Nutritional Values:")
+								.font(.title2)
+								.foregroundStyle(.black.secondary)
+							
+							Spacer()
+							
+						}
+						
+						VStack{
+							StyledProgressBar(progress: user.carbsProgress, maxValue: user.carbsProgressGoal, measureUnit: "g", progressColor: .mainGreenAccent, text: "Carbs", textColor: .gray)
+							
+							StyledProgressBar(progress: user.proteinProgress, maxValue: user.proteinProgressGoal, measureUnit: "g", progressColor: .mainGreenAccent, text: "Protein", textColor: .gray)
+							
+							StyledProgressBar(progress: user.fatProgress, maxValue: user.fatProgressGoal, measureUnit: "g", progressColor: .mainGreenAccent, text: "Fat", textColor: .gray)
+							
+							StyledProgressBar(progress: user.waterProgress, maxValue: user.waterProgressGoal, measureUnit: "l", progressColor: .mainGreenAccent, text: "Water", textColor: .gray)
+						}
 						.padding()
-						.frame(width: 320,alignment:.leading)
-						.background(.white.secondary)
-						.clipShape(RoundedRectangle(cornerRadius: 10))
-						.font(.title3)
-						.offset(y:-10)
+						
+					}
+					
+					VStack(spacing: 10){
+						HStack{
+							Text("Next meal:")
+								.font(.title2)
+								.foregroundStyle(.black.secondary)
+							
+							Spacer()
+							
+							Button("Show more"){
+								print("BBBBB")
+								self.showPopUpNextMeal.toggle()
+							}
+							.foregroundStyle(.mainGreenAccent)
+							.popover(isPresented: $showPopUpNextMeal, content: {
+								NextMealDetail()
+							})
+						}
+						
+						PlateCard(img: "Carbonara", text: "Carbonara", height: 200, width: 340, hasToFit: true)
+						
+					}
 				}
-				.frame(width: 340, height: 170)
+				.frame(maxWidth: 340)
+				.scrollIndicators(.never)
+				.tabItem {
+					Label(title: {Text("Home")},
+					icon: {Image(systemName: "house.fill")})
+				}
+				.tag(0)
+				// Calendar
+				
+				Ccalendar()
+					.navigationTitle("Calendar").navigationBarTitleDisplayMode(.large)
+					.tabItem {
+						Label(title: {Text("Calendar")},
+						icon: {Image(systemName: "calendar")})
+					}
+					.tag(1)
 			}
+			.tint(.purple)
+			.tabViewStyle(DefaultTabViewStyle())
+			.navigationBarBackButtonHidden()
+			.navigationTitle(self.tabViewSelection == 0 ? "HomePage" : "Calendar")
+			.navigationBarTitleDisplayMode(.large)
 		}
-		.frame(maxWidth: 340)
-		.scrollIndicators(.never)
+		.environmentObject(self.user)
 	}
 }
 
-#Preview {
-	HomePage()
+
+struct pagePreview : PreviewProvider{
+	static var previews: some View {
+		@StateObject var user : User = 	User(name: "Brian", surname: "Zaniolo", email: "example@example.com", earnedCalories: 1000)
+		VStack{
+			HomePage()
+		}
+		.environmentObject(user)
+	}
 }

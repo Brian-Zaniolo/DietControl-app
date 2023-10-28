@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SignBackInPage: View {
+	
+	@Query private var users : [User]
+	
     var body: some View {
+		
 		VStack{
 			
 			AppLogo().offset(y:40)
@@ -19,27 +24,12 @@ struct SignBackInPage: View {
 			
 			Spacer().frame(maxHeight: 50)
 			
-			VStack(spacing: 5){
+			ScrollView{
 				
-				HStack {
-					
-					AppLogo(frameHeight: 80)
-					
-					VStack {
-						StyledNavigationLink(destination: HomePage(), bgColor: .clear, title: "Account Loggato", shadowActive: false, isDisabled: false)
-							.foregroundStyle(.black)
-						
-						Text("logged@logged.com").font(.caption).tint(.gray)
-					}
-					
-					Image(systemName: "arrow.right").foregroundStyle(.gray)
-					
-					Spacer()
+				ForEach(users){ user in
+					userBackInCard(user: user)
+					Divider()
 				}
-				.padding(10)
-				
-				
-				Divider().frame(maxWidth: 300)
 				
 				HStack {
 					
@@ -49,7 +39,7 @@ struct SignBackInPage: View {
 						.aspectRatio(contentMode: .fit)
 						.offset(x:7)
 					
-					StyledNavigationLink(destination: HomePage(), bgColor: .clear, title: "Add Account", shadowActive: false, isDisabled: false)
+					StyledNavigationLink(destination: RootPage(), bgColor: .clear, title: "Add Account", shadowActive: false, isDisabled: false)
 						.foregroundStyle(.black)
 					
 					Image(systemName: "arrow.right").foregroundStyle(.gray)
@@ -73,6 +63,7 @@ struct SignBackInPage: View {
 			
 			Spacer()
 		}
+		.navigationBarBackButtonHidden()
     }
 }
 
