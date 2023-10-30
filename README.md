@@ -7,8 +7,8 @@ Divisione sviluppo:
 
 - Zaniolo: contributo nella pagina di registrazione, Homepage, swiftdata
 
-- Pizzoni: aggiungi piatti, impostazioni
+- Pizzoni: contributo nella pagina di registrazione, aggiungi piatti, impostazioni
 
-- Aiello: PlateCard , detailedPlate
+- Aiello: contributo nella pagina di registrazione, PlateCard , detailedPlate
 
-- Gruppo: Goal Calorie , calendario
+- Gruppo: contributo nella pagina di registrazione, Goal Calorie , calendario
